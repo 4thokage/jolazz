@@ -1,0 +1,86 @@
+/* Hop Portugal — design tokens (Hallmark portable export)
+ * Source of truth mirrors src/routes/layout.css @theme block.
+ */
+
+:root {
+	/* Color — Deep Hop Green (desaturated) */
+	--color-hop-50: oklch(96% 0.02 155);
+	--color-hop-100: oklch(90% 0.04 155);
+	--color-hop-200: oklch(80% 0.06 155);
+	--color-hop-300: oklch(68% 0.07 152);
+	--color-hop-400: oklch(56% 0.08 150);
+	--color-hop-500: oklch(45% 0.08 150);
+	--color-hop-600: oklch(38% 0.07 150);
+	--color-hop-700: oklch(31% 0.06 150);
+	--color-hop-800: oklch(25% 0.05 150);
+	--color-hop-900: oklch(20% 0.04 150);
+
+	/* Amber Gold */
+	--color-amber-300: oklch(82% 0.12 75);
+	--color-amber-400: oklch(74% 0.14 72);
+	--color-amber-500: oklch(66% 0.15 70);
+	--color-amber-600: oklch(56% 0.13 68);
+
+	/* Copper accent */
+	--color-copper-300: oklch(78% 0.09 45);
+	--color-copper-400: oklch(68% 0.11 45);
+	--color-copper-500: oklch(58% 0.12 42);
+	--color-copper-600: oklch(48% 0.11 40);
+
+	/* Surfaces */
+	--color-cream: oklch(97% 0.018 95);
+	--color-cream-200: oklch(93% 0.022 95);
+	--color-slate: oklch(34% 0.02 250);
+	--color-slate-soft: oklch(48% 0.02 250);
+	--color-slate-faint: oklch(64% 0.015 250);
+	--color-line: oklch(89% 0.012 95);
+	--color-card: oklch(100% 0 0);
+
+	/* Semantics */
+	--color-bg: var(--color-cream);
+	--color-fg: var(--color-slate);
+	--color-muted: var(--color-slate-soft);
+	--color-accent: var(--color-copper-500);
+	--color-primary: var(--color-hop-600);
+	--color-success: var(--color-hop-500);
+	--color-danger: oklch(55% 0.16 25);
+
+	/* Typography */
+	--font-display: 'Fraunces', ui-serif, Georgia, serif;
+	--font-body: 'Inter', ui-sans-serif, system-ui, sans-serif;
+
+	/* Radius */
+	--radius-card: 1.25rem;
+	--radius-chip: 999px;
+	--radius-sheet: 1.75rem;
+
+	/* Spacing (4pt scale) */
+	--space-xs: 0.25rem;
+	--space-sm: 0.5rem;
+	--space-md: 1rem;
+	--space-lg: 1.5rem;
+	--space-xl: 2rem;
+	--space-2xl: 3rem;
+	--space-3xl: 4rem;
+
+	/* Text scale */
+	--text-display: clamp(2.25rem, 6vw, 3.25rem);
+	--text-h1: clamp(1.75rem, 4.5vw, 2.25rem);
+	--text-h2: clamp(1.35rem, 3.5vw, 1.6rem);
+	--text-lg: 1.125rem;
+	--text-base: 1rem;
+	--text-sm: 0.875rem;
+	--text-xs: 0.75rem;
+
+	/* Shadows / elevation */
+	--shadow-card: 0 1px 2px oklch(20% 0.02 150 / 0.04), 0 8px 24px oklch(20% 0.02 150 / 0.08);
+	--shadow-sheet: 0 -8px 40px oklch(20% 0.02 150 / 0.18);
+	--shadow-tab: 0 -2px 16px oklch(20% 0.02 150 / 0.1);
+
+	/* Motion */
+	--ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+	--ease-in: cubic-bezier(0.4, 0, 1, 1);
+	--ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+	--dur-fast: 140ms;
+	--dur-base: 200ms;
+}

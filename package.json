@@ -1,0 +1,45 @@
+{
+	"name": "jolas",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"scripts": {
+		"dev": "vite dev",
+		"build": "wrangler types --check && vite build",
+		"preview": "wrangler pages dev .svelte-kit/cloudflare --port 4173",
+		"prepare": "svelte-kit sync || echo ''",
+		"check": "wrangler types --check && svelte-kit sync && svelte-check --tsconfig ./tsconfig.json",
+		"check:watch": "svelte-kit sync && svelte-check --tsconfig ./tsconfig.json --watch",
+		"lint": "prettier --check . && eslint .",
+		"format": "prettier --write .",
+		"gen": "wrangler types"
+	},
+	"devDependencies": {
+		"@eslint/js": "^10.0.1",
+		"@inlang/paraglide-js": "^2.22.0",
+		"@sveltejs/adapter-cloudflare": "^7.2.9",
+		"@sveltejs/kit": "^2.70.0",
+		"@sveltejs/vite-plugin-svelte": "^7.2.0",
+		"@tailwindcss/typography": "^0.5.20",
+		"@tailwindcss/vite": "^4.3.3",
+		"@types/node": "^26.1.1",
+		"eslint": "^10.7.0",
+		"eslint-config-prettier": "^10.1.8",
+		"eslint-plugin-svelte": "^3.20.0",
+		"globals": "^17.7.0",
+		"prettier": "^3.9.5",
+		"prettier-plugin-svelte": "^4.1.1",
+		"prettier-plugin-tailwindcss": "^0.8.1",
+		"svelte": "^5.56.6",
+		"svelte-check": "^4.7.3",
+		"tailwindcss": "^4.3.3",
+		"typescript": "^5.9.3",
+		"typescript-eslint": "^8.64.0",
+		"vite": "^8.1.5",
+		"wrangler": "^4.112.0"
+	},
+	"dependencies": {
+		"@fontsource/fraunces": "^5.2.9",
+		"@fontsource/inter": "^5.2.8"
+	}
+}

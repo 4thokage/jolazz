@@ -1,4 +1,4 @@
-/* Hop Portugal — low-level Open Brewery DB client with aggressive caching.
+/* Jolazz — low-level Open Brewery DB client with aggressive caching.
  * Caches parsed responses in an in-memory TTL map keyed by URL. On Cloudflare
  * Pages this lives for the lifetime of the isolate; pair with Cache-Control
  * headers (set in the route handlers) for edge caching.

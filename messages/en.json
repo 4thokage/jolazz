@@ -1,6 +1,6 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"app_name": "Hop Portugal",
+	"app_name": "Jolazz",
 	"tagline": "Craft beer, discovered.",
 	"splash_title": "Find great craft beer nearby",
 	"splash_subtitle": "Discover Portuguese breweries, taprooms and brewpubs in under 30 seconds.",
@@ -35,7 +35,7 @@
 	"settings_language": "Language",
 	"settings_about": "About",
 	"settings_privacy": "Privacy",
-	"settings_about_desc": "Hop Portugal is a discovery app for Portuguese craft breweries. No accounts, no tracking — your passport stays on this device.",
+	"settings_about_desc": "Jolazz is a discovery app for Portuguese craft breweries. No accounts, no tracking — your passport stays on this device.",
 	"settings_privacy_desc": "We do not collect personal data. Your favorites and stamps are stored only in this browser.",
 	"detail_directions": "Directions",
 	"detail_website": "Website",

@@ -1,6 +1,6 @@
 {
 	"$schema": "https://inlang.com/schema/inlang-message-format",
-	"app_name": "Hop Portugal",
+	"app_name": "Jolazz",
 	"tagline": "Cerveja artesanal, descoberta.",
 	"splash_title": "Encontre boa cerveja artesanal perto de si",
 	"splash_subtitle": "Descubra cervejarias, tap rooms e brewpubs portugueses em menos de 30 segundos.",
@@ -35,7 +35,7 @@
 	"settings_language": "Idioma",
 	"settings_about": "Sobre",
 	"settings_privacy": "Privacidade",
-	"settings_about_desc": "O Hop Portugal é uma app de descoberta de cervejarias artesanais portuguesas. Sem contas, sem rastreio — o seu passaporte fica neste dispositivo.",
+	"settings_about_desc": "O Jolazz é uma app de descoberta de cervejarias artesanais portuguesas. Sem contas, sem rastreio — o seu passaporte fica neste dispositivo.",
 	"settings_privacy_desc": "Não recolhemos dados pessoais. Os seus favoritos e carimbos são guardados apenas neste navegador.",
 	"detail_directions": "Como chegar",
 	"detail_website": "Website",

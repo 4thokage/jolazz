@@ -1,4 +1,4 @@
-/* Hop Portugal — atmosphere imagery.
+/* Jolazz — atmosphere imagery.
  *
  * Open Brewery DB ships zero photos. The product brief asks for *atmosphere*:
  * premium craft-beer photography (taprooms, glasses, hops, barrels, pours)

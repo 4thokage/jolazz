@@ -1,4 +1,4 @@
-/* Hop Portugal — optional enrichment layer.
+/* Jolazz — optional enrichment layer.
  *
  * The upstream Brewery source (Open Brewery DB) does not provide logos,
  * photos, or descriptions. This module defines a swappable Enricher

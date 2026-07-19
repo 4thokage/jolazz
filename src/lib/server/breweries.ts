@@ -1,4 +1,4 @@
-/* Hop Portugal — domain assembly.
+/* Jolazz — domain assembly.
  * Composes Open Brewery DB data + enrichment into the product Brewery shape,
  * computes distance from an origin, and applies MVP filters.
  */

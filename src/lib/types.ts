@@ -1,4 +1,4 @@
-/* Hop Portugal — domain types
+/* Jolazz — domain types
  * The Brewery shape models the FULL future product (per brief) with optional
  * fields. Only fields the upstream source (Open Brewery DB) can supply are
  * populated today; enrichment + future features fill the rest. Nothing is

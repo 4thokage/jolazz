@@ -1,1 +1,1 @@
-<p class="p-6 text-[var(--text-sm)] text-[var(--color-muted)]">Loading…</p>
+<p class="p-6 text-[var(--color-muted)] text-[var(--text-sm)]">Loading…</p>

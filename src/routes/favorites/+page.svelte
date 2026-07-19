@@ -53,10 +53,14 @@
 <svelte:head><title>{m.app_name()} · {m.favorites_title()}</title></svelte:head>
 
 <section class="px-4 pt-6 pb-4">
-	<header class="mb-4">
+	<header class="mb-5">
+		<p class="text-[var(--color-muted)] text-[var(--text-sm)]">{m.app_name()}</p>
 		<h1 class="font-semibold text-[var(--color-slate)] text-[var(--text-h1)]">
 			{m.favorites_title()}
 		</h1>
+		<p class="mt-1 text-[var(--color-muted)] text-[var(--text-base)]">
+			{m.favorites_saved()}
+		</p>
 	</header>
 
 	<div class="mb-5 flex gap-2" role="tablist">

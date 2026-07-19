@@ -18,6 +18,7 @@
 	import Skeleton from '$lib/components/Skeleton.svelte';
 	import EmptyState from '$lib/components/EmptyState.svelte';
 	import ErrorState from '$lib/components/ErrorState.svelte';
+	import { heroPhoto, thumbPhoto } from '$lib/atmosphere';
 
 	const id = $derived(page.params.id ?? '');
 	const params = $derived(page.url.searchParams);
@@ -104,16 +105,14 @@
 			<Button onclick={() => location.reload()}>{m.error_retry()}</Button>
 		</ErrorState>
 	{:else}
-		<div class="relative aspect-[16/10] w-full overflow-hidden bg-[var(--color-cream-200)]">
-			{#if brewery.photos && brewery.photos.length}
-				<img src={brewery.photos[0]} alt={brewery.name} class="h-full w-full object-cover" />
-			{:else}
-				<div
-					class="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--color-hop-100)] to-[var(--color-amber-300)] text-[var(--color-hop-500)]"
-				>
-					<Icon name="compass" size={56} />
-				</div>
-			{/if}
+		<div
+			class="relative aspect-[4/5] w-full overflow-hidden bg-[var(--color-cream-200)] sm:aspect-[16/10]"
+		>
+			<img src={heroPhoto(brewery)} alt="" class="h-full w-full object-cover" />
+			<div
+				class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[oklch(20%_0.04_150_/_0.85)] via-[oklch(20%_0.04_150_/_0.25)] to-[oklch(20%_0.04_150_/_0.1)]"
+				aria-hidden="true"
+			></div>
 			<a
 				href={link(`/explore?lat=${origin.lat}&lng=${origin.lng}&unit=${unit}`)}
 				class="absolute top-4 left-4 grid h-10 w-10 place-items-center rounded-full bg-[var(--color-card)]/90 text-[var(--color-slate)] shadow-[var(--shadow-card)] backdrop-blur focus-visible:ring-2 focus-visible:ring-[var(--color-copper-400)] focus-visible:outline-none"
@@ -121,51 +120,54 @@
 			>
 				<Icon name="chevron-right" size={22} />
 			</a>
+			<button
+				type="button"
+				onclick={() => brewery && passport.toggleFavorite(brewery.id)}
+				aria-pressed={favorited}
+				aria-label={favorited ? m.detail_saved() : m.detail_save()}
+				class="absolute top-4 right-4 grid h-10 w-10 place-items-center rounded-full border border-white/30 bg-black/25 text-white shadow-[var(--shadow-card)] backdrop-blur transition-colors hover:text-[var(--color-copper-300)] focus-visible:ring-2 focus-visible:ring-[var(--color-copper-400)] focus-visible:outline-none {favorited
+					? 'text-[var(--color-copper-300)]'
+					: ''}"
+			>
+				<Icon name="bookmark" size={20} />
+			</button>
+			<div class="absolute inset-x-0 bottom-0 p-5 text-white">
+				<p class="flex items-center gap-1.5 text-[var(--text-sm)] text-white/85">
+					<Icon name="map" size={16} class="opacity-80" />
+					{typeLabel(brewery.breweryType)}
+					{#if brewery.distanceMeters !== undefined}
+						<span class="opacity-50">·</span>
+						<Icon name="pin" size={14} class="opacity-80" />
+						{formatDistance(brewery.distanceMeters, unit)}
+					{/if}
+				</p>
+				<h1 class="mt-1 leading-[1.02] font-semibold text-[var(--text-display)]">
+					{brewery.name}
+				</h1>
+				{#if brewery.city}
+					<p class="mt-1 text-[var(--text-base)] text-white/85">{brewery.city}</p>
+				{/if}
+			</div>
 		</div>
 
 		<div class="px-5 pt-5">
-			<div class="flex items-start justify-between gap-3">
-				<div class="min-w-0">
-					<h1 class="font-semibold text-[var(--color-slate)] text-[var(--text-h1)]">
-						{brewery.name}
-					</h1>
-					<p class="mt-1 text-[var(--color-muted)] text-[var(--text-base)]">
-						{typeLabel(brewery.breweryType)}
-					</p>
-				</div>
-				<button
-					type="button"
-					onclick={() => brewery && passport.toggleFavorite(brewery.id)}
-					aria-pressed={favorited}
-					aria-label={favorited ? m.detail_saved() : m.detail_save()}
-					class="grid h-11 w-11 shrink-0 place-items-center rounded-full border border-[var(--color-line)] bg-[var(--color-card)] text-[var(--color-slate-soft)] shadow-[var(--shadow-card)] hover:text-[var(--color-copper-500)] focus-visible:ring-2 focus-visible:ring-[var(--color-copper-400)] focus-visible:outline-none {favorited
-						? 'text-[var(--color-copper-500)]'
-						: ''}"
-				>
-					<Icon name="bookmark" size={22} />
-				</button>
-			</div>
-
-			{#if brewery.distanceMeters !== undefined}
-				<p class="mt-2 font-medium text-[var(--color-hop-600)] text-[var(--text-sm)]">
-					{formatDistance(brewery.distanceMeters, unit)} · {formatAddress(brewery) || brewery.city}
-				</p>
-			{/if}
-
 			{#if brewery.description}
-				<p class="mt-4 leading-relaxed text-[var(--color-slate)] text-[var(--text-base)]">
+				<p class="leading-relaxed text-[var(--color-slate)] text-[var(--text-base)]">
 					{brewery.description}
 				</p>
 			{/if}
 
 			<div class="mt-5 flex gap-3">
-				<Button href={mapsDirectionsUrl(brewery)} class="flex-1">{m.detail_directions()}</Button>
+				<Button href={mapsDirectionsUrl(brewery)} class="flex-1">
+					<Icon name="directions" size={18} />
+					{m.detail_directions()}
+				</Button>
 				<Button
 					variant={stamped ? 'secondary' : 'primary'}
 					onclick={() => brewery && passport.toggleStamp(brewery.id)}
 					class="flex-1"
 				>
-					<Icon name="star" size={18} />
+					<Icon name={stamped ? 'check' : 'star'} size={18} />
 					{stamped ? m.detail_stamped() : m.detail_stamp()}
 				</Button>
 			</div>
@@ -218,7 +220,7 @@
 					</ul>
 				{:else}
 					<EmptyState
-						icon="compass"
+						icon="camera"
 						title={m.detail_beers_empty()}
 						description={m.detail_beers_empty_desc()}
 					/>

@@ -27,9 +27,10 @@
 			| 'arrow-right'
 			| 'plus';
 		size?: number;
+		class?: string;
 	}
 
-	let { name, size = 24 }: IconProps = $props();
+	let { name, size = 24, class: klass = '' }: IconProps = $props();
 
 	const paths: Record<IconProps['name'], string> = {
 		pin: 'M12 21s-7-7.5-7-12a7 7 0 0 1 14 0c0 4.5-7 12-7 12z M12 11a2.5 2.5 0 1 0 0-5 2.5 2.5 0 0 0 0 5z',
@@ -68,6 +69,7 @@
 	xmlns="http://www.w3.org/2000/svg"
 	width={size}
 	height={size}
+	class={klass}
 	viewBox="0 0 24 24"
 	fill="none"
 	stroke="currentColor"

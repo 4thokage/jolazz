@@ -13,6 +13,7 @@
 	import EmptyState from '$lib/components/EmptyState.svelte';
 	import ErrorState from '$lib/components/ErrorState.svelte';
 	import FilterSheet from '$lib/components/FilterSheet.svelte';
+	import { heroPhoto } from '$lib/atmosphere';
 
 	const params = $derived(page.url.searchParams);
 	const origin = $derived({
@@ -112,43 +113,77 @@
 			{@const b = data.featured}
 			<a
 				href={hrefFor(b)}
-				class="relative mb-4 block overflow-hidden rounded-[var(--radius-card)] bg-[var(--color-hop-600)] text-white shadow-[var(--shadow-card)]"
+				class="group relative mb-5 block overflow-hidden rounded-[var(--radius-card)] text-white shadow-[var(--shadow-card)]"
 			>
-				<div
-					class="flex aspect-[16/7] items-end bg-gradient-to-br from-[var(--color-hop-500)] to-[var(--color-amber-500)] p-5"
-				>
-					<div class="relative z-10">
-						<p class="tracking-wide text-[var(--text-xs)] text-white/80 uppercase">
+				<div class="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[16/11]">
+					<img
+						src={heroPhoto(b)}
+						alt=""
+						class="h-full w-full object-cover transition-transform duration-[600ms] ease-[var(--ease-out)] group-hover:scale-[1.03]"
+					/>
+					<div
+						class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[oklch(20%_0.04_150_/_0.82)] via-[oklch(20%_0.04_150_/_0.2)] to-[oklch(20%_0.04_150_/_0.05)]"
+						aria-hidden="true"
+					></div>
+					{#if b.distanceMeters !== undefined}
+						<span
+							class="absolute top-4 right-4 grid place-items-center rounded-full bg-white/90 px-3 py-1 font-semibold text-[var(--color-slate)] text-[var(--text-xs)] backdrop-blur"
+						>
+							<Icon name="pin" size={13} class="mr-1 opacity-70" />
+							{formatDistance(b.distanceMeters, unit)}
+						</span>
+					{/if}
+					<div class="absolute inset-x-0 bottom-0 p-5">
+						<p
+							class="mb-1 flex items-center gap-2 font-semibold tracking-wide text-[var(--color-amber-300)] text-[var(--text-xs)] uppercase"
+						>
+							<Icon name="spark" size={14} />
 							{m.explore_featured()}
 						</p>
-						<h2 class="mt-1 font-semibold text-[var(--text-h1)]">{b.name}</h2>
-						<p class="mt-1 text-[var(--text-sm)] text-white/85">{b.city}</p>
+						<h2 class="leading-[1.02] font-semibold text-[var(--text-display)]">{b.name}</h2>
+						<p class="mt-1.5 flex items-center gap-1.5 text-[var(--text-base)] text-white/85">
+							<Icon name="map" size={16} class="opacity-80" />
+							{b.city}
+						</p>
 					</div>
 				</div>
-				{#if b.distanceMeters !== undefined}
-					<span
-						class="absolute top-4 right-4 rounded-full bg-white/20 px-3 py-1 font-medium text-[var(--text-xs)] backdrop-blur"
-					>
-						{formatDistance(b.distanceMeters, unit)}
-					</span>
-				{/if}
 			</a>
 		{/if}
 
 		{#if !data.hasEventsToday}
-			<div class="mb-4">
-				<p
-					class="mb-2 font-semibold tracking-wide text-[var(--color-slate-faint)] text-[var(--text-sm)] uppercase"
-				>
-					{m.explore_upcoming()}
-				</p>
-				<EmptyState icon="spark" title={m.detail_events_empty()} />
+			<div
+				class="mb-5 rounded-[var(--radius-card)] border border-[var(--color-line)] bg-[var(--color-card)] p-5 shadow-[var(--shadow-card)]"
+			>
+				<div class="flex items-center gap-3">
+					<span
+						class="grid h-11 w-11 shrink-0 place-items-center rounded-full bg-[var(--color-cream-200)] text-[var(--color-hop-600)]"
+					>
+						<Icon name="spark" size={22} />
+					</span>
+					<div>
+						<p class="font-semibold text-[var(--color-slate)] text-[var(--text-base)]">
+							{m.explore_upcoming()}
+						</p>
+						<p class="text-[var(--color-muted)] text-[var(--text-sm)]">
+							{m.detail_events_empty()}
+						</p>
+					</div>
+				</div>
 			</div>
 		{/if}
 
-		<h2 class="mb-3 font-semibold text-[var(--color-slate)] text-[var(--text-h2)]">
-			{m.map_nearby()}
-		</h2>
+		<div class="mb-3 flex items-baseline justify-between">
+			<h2 class="font-semibold text-[var(--color-slate)] text-[var(--text-h2)]">
+				{m.map_nearby()}
+			</h2>
+			<a
+				href={link(`/map?lat=${origin.lat}&lng=${origin.lng}&unit=${unit}`)}
+				class="flex items-center gap-1 font-medium text-[var(--color-copper-500)] text-[var(--text-sm)] focus-visible:ring-2 focus-visible:ring-[var(--color-copper-400)] focus-visible:outline-none"
+			>
+				<Icon name="map" size={16} />
+				{m.map_title()}
+			</a>
+		</div>
 		{#if data.nearby.length === 0}
 			<EmptyState icon="compass" title={m.search_empty()} />
 		{:else}

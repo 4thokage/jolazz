@@ -10,6 +10,7 @@
 	import Button from '$lib/components/Button.svelte';
 	import Skeleton from '$lib/components/Skeleton.svelte';
 	import EmptyState from '$lib/components/EmptyState.svelte';
+	import { cardPhoto } from '$lib/atmosphere';
 
 	const params = $derived(page.url.searchParams);
 	const origin = $derived({
@@ -105,9 +106,10 @@
 <svelte:head><title>{m.app_name()} · {m.map_title()}</title></svelte:head>
 
 <section class="px-4 pt-6 pb-4">
-	<header class="mb-3">
+	<header class="mb-4">
+		<p class="text-[var(--color-muted)] text-[var(--text-sm)]">{m.app_name()}</p>
 		<h1 class="font-semibold text-[var(--color-slate)] text-[var(--text-h1)]">{m.map_title()}</h1>
-		<p class="text-[var(--color-muted)] text-[var(--text-sm)]">{m.map_nearby()}</p>
+		<p class="mt-1 text-[var(--color-muted)] text-[var(--text-base)]">{m.map_nearby()}</p>
 	</header>
 </section>
 
@@ -129,28 +131,37 @@
 	{#if selected}
 		<div class="space-y-4">
 			<div
-				class="aspect-[16/9] overflow-hidden rounded-[var(--radius-card)] bg-[var(--color-cream-200)]"
+				class="relative aspect-[16/9] overflow-hidden rounded-[var(--radius-card)] bg-[var(--color-cream-200)]"
 			>
+				<img src={cardPhoto(selected)} alt="" class="h-full w-full object-cover" />
 				<div
-					class="flex h-full w-full items-center justify-center bg-gradient-to-br from-[var(--color-hop-100)] to-[var(--color-amber-300)] text-[var(--color-hop-500)]"
-				>
-					<Icon name="compass" size={40} />
-				</div>
+					class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[oklch(20%_0.04_150_/_0.45)] to-transparent"
+					aria-hidden="true"
+				></div>
 			</div>
 			<div>
-				<p class="text-[var(--color-muted)] text-[var(--text-sm)]">
+				<p class="font-semibold text-[var(--color-slate)] text-[var(--text-h2)]">
+					{selected.name}
+				</p>
+				<p class="mt-1 text-[var(--color-muted)] text-[var(--text-sm)]">
 					{typeLabel(selected.breweryType)}
 				</p>
-				{#if selected.city}<p class="text-[var(--color-slate-faint)] text-[var(--text-sm)]">
-						{selected.city}
-					</p>{/if}
+				{#if selected.city}
+					<p class="text-[var(--color-slate-faint)] text-[var(--text-sm)]">{selected.city}</p>
+				{/if}
 				{#if selected.distanceMeters !== undefined}
-					<p class="mt-1 font-medium text-[var(--color-hop-600)] text-[var(--text-base)]">
+					<p
+						class="mt-2 flex items-center gap-1.5 font-medium text-[var(--color-hop-600)] text-[var(--text-base)]"
+					>
+						<Icon name="pin" size={15} class="opacity-80" />
 						{formatDistance(selected.distanceMeters, unit)}
 					</p>
 				{/if}
 			</div>
-			<Button href={hrefFor(selected)}>{m.detail_directions()}</Button>
+			<Button href={hrefFor(selected)} class="w-full">
+				<Icon name="directions" size={18} />
+				{m.detail_directions()}
+			</Button>
 		</div>
 	{/if}
 </BottomSheet>

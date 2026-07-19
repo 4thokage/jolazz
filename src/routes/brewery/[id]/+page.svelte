@@ -18,7 +18,7 @@
 	import Skeleton from '$lib/components/Skeleton.svelte';
 	import EmptyState from '$lib/components/EmptyState.svelte';
 	import ErrorState from '$lib/components/ErrorState.svelte';
-	import { heroPhoto, thumbPhoto } from '$lib/atmosphere';
+	import BreweryPhoto from '$lib/components/BreweryPhoto.svelte';
 
 	const id = $derived(page.params.id ?? '');
 	const params = $derived(page.url.searchParams);
@@ -108,7 +108,7 @@
 		<div
 			class="relative aspect-[4/5] w-full overflow-hidden bg-[var(--color-cream-200)] sm:aspect-[16/10]"
 		>
-			<img src={heroPhoto(brewery)} alt="" class="h-full w-full object-cover" />
+			<BreweryPhoto {brewery} variant="hero" />
 			<div
 				class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[oklch(20%_0.04_150_/_0.85)] via-[oklch(20%_0.04_150_/_0.25)] to-[oklch(20%_0.04_150_/_0.1)]"
 				aria-hidden="true"

@@ -13,7 +13,7 @@
 	import EmptyState from '$lib/components/EmptyState.svelte';
 	import ErrorState from '$lib/components/ErrorState.svelte';
 	import FilterSheet from '$lib/components/FilterSheet.svelte';
-	import { heroPhoto } from '$lib/atmosphere';
+	import BreweryPhoto from '$lib/components/BreweryPhoto.svelte';
 
 	const params = $derived(page.url.searchParams);
 	const origin = $derived({
@@ -116,10 +116,10 @@
 				class="group relative mb-5 block overflow-hidden rounded-[var(--radius-card)] text-white shadow-[var(--shadow-card)]"
 			>
 				<div class="relative aspect-[4/5] w-full overflow-hidden sm:aspect-[16/11]">
-					<img
-						src={heroPhoto(b)}
-						alt=""
-						class="h-full w-full object-cover transition-transform duration-[600ms] ease-[var(--ease-out)] group-hover:scale-[1.03]"
+					<BreweryPhoto
+						brewery={b}
+						variant="hero"
+						class="transition-transform duration-[600ms] ease-[var(--ease-out)] group-hover:scale-[1.03]"
 					/>
 					<div
 						class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[oklch(20%_0.04_150_/_0.82)] via-[oklch(20%_0.04_150_/_0.2)] to-[oklch(20%_0.04_150_/_0.05)]"

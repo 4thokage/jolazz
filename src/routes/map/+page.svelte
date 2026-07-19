@@ -10,7 +10,7 @@
 	import Button from '$lib/components/Button.svelte';
 	import Skeleton from '$lib/components/Skeleton.svelte';
 	import EmptyState from '$lib/components/EmptyState.svelte';
-	import { cardPhoto } from '$lib/atmosphere';
+	import BreweryPhoto from '$lib/components/BreweryPhoto.svelte';
 
 	const params = $derived(page.url.searchParams);
 	const origin = $derived({
@@ -133,7 +133,7 @@
 			<div
 				class="relative aspect-[16/9] overflow-hidden rounded-[var(--radius-card)] bg-[var(--color-cream-200)]"
 			>
-				<img src={cardPhoto(selected)} alt="" class="h-full w-full object-cover" />
+				<BreweryPhoto brewery={selected} variant="card" />
 				<div
 					class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[oklch(20%_0.04_150_/_0.45)] to-transparent"
 					aria-hidden="true"

@@ -4,7 +4,7 @@
 	import Icon from './Icon.svelte';
 	import { passport } from '$lib/passport/store.svelte';
 	import { link } from '$lib/link';
-	import { cardPhoto } from '$lib/atmosphere';
+	import BreweryPhoto from './BreweryPhoto.svelte';
 
 	interface Props {
 		brewery: Brewery;
@@ -24,11 +24,10 @@
 >
 	<a {href} class="block min-h-11">
 		<div class="relative aspect-[16/10] w-full overflow-hidden bg-[var(--color-cream-200)]">
-			<img
-				src={cardPhoto(brewery)}
-				alt=""
-				class="h-full w-full object-cover transition-transform duration-[600ms] ease-[var(--ease-out)] group-hover:scale-[1.04]"
-				loading="lazy"
+			<BreweryPhoto
+				{brewery}
+				variant="card"
+				class="transition-transform duration-[600ms] ease-[var(--ease-out)] group-hover:scale-[1.04]"
 			/>
 			<div
 				class="pointer-events-none absolute inset-0 bg-gradient-to-t from-[oklch(20%_0.04_150_/_0.72)] via-[oklch(20%_0.04_150_/_0.12)] to-transparent"

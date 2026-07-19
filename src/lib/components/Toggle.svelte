@@ -1,12 +1,14 @@
 <script lang="ts">
-	/* Reusable toggle row for settings + filter sheets. */
+	/* Hallmark · component: toggle · states: default hover focus active disabled
+	 * Premium pill switch: thick track, generous knob, smooth damped motion. */
 	interface Props {
 		label: string;
 		description?: string;
 		checked?: boolean;
+		disabled?: boolean;
 		onchange?: (v: boolean) => void;
 	}
-	let { label, description, checked = false, onchange }: Props = $props();
+	let { label, description, checked = false, disabled = false, onchange }: Props = $props();
 </script>
 
 <div class="flex items-center justify-between gap-4 py-3">
@@ -21,14 +23,15 @@
 		role="switch"
 		aria-checked={checked}
 		aria-label={label}
-		onclick={() => onchange?.(!checked)}
-		class="relative h-7 w-12 shrink-0 rounded-full transition-colors duration-[var(--dur-fast)] ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-[var(--color-copper-400)] focus-visible:outline-none {checked
+		{disabled}
+		onclick={() => !disabled && onchange?.(!checked)}
+		class="relative h-8 w-14 shrink-0 rounded-full transition-colors duration-[var(--dur-base)] ease-[var(--ease-out)] focus-visible:ring-2 focus-visible:ring-[var(--color-copper-400)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--color-bg)] focus-visible:outline-none active:scale-[0.97] disabled:pointer-events-none disabled:opacity-40 {checked
 			? 'bg-[var(--color-hop-600)]'
-			: 'bg-[var(--color-cream-200)]'}"
+			: 'bg-[var(--color-slate-faint)]/40'}"
 	>
 		<span
-			class="absolute top-1 h-5 w-5 rounded-full bg-white shadow transition-transform duration-[var(--dur-fast)] ease-[var(--ease-out)] {checked
-				? 'translate-x-6'
+			class="absolute top-1 h-6 w-6 rounded-full bg-white shadow-[0_1px_3px_oklch(20%_0.02_150_/_0.3)] transition-transform duration-[var(--dur-base)] ease-[var(--ease-out)] {checked
+				? 'translate-x-7'
 				: 'translate-x-1'}"
 		></span>
 	</button>
